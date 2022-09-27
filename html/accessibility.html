@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Accessibility</title>
+    <style>
+      .hidden {
+        display: none;
+      }
+
+      ol {
+        display: flex;
+        margin: 0;
+      }
+      li {
+        list-style-type: none;
+        border: 1px solid black;
+        background-color: white;
+        padding: 1rem;
+      }
+
+      li:hover {
+        cursor: pointer;
+      }
+
+      div {
+        border-radius: 1rem;
+        padding: 3rem;
+        background-color: aquamarine;
+      }
+      div:nth-of-type(0) {
+        background-color: aquamarine;
+      }
+      div:nth-of-type(1) {
+        background-color: brown;
+      }
+      div:nth-of-type(2) {
+        background-color: dodgerblue;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- WAI-ARIA-->
+    <!-- To have good accessibility -
+      Use descriptive content, labels & alt
+      Write semantic html
+      Test keyboard controls
+
+      Concerns
+      - Browser compatability
+      - CSS accessibility
+      - Internationalization (i18n)
+        - Language support
+        - Test with different style languages
+    -->
+
+    <!-- roles - What an element does
+      Landmark roles - eg banner, main, navigation, semantic tags already have landmark role
+      Structured role - eg tooltip, list, table, list, listitem
+      Widget role - Interactive element, eg tabs, searchbox, button, default tags already have
+      Window role - dialog, alert dialog eg - role="dialog" aria-labelledby="title"
+      Live region role - Dynamic content changes, eg timer, log, alert
+    -->
+    <!-- properties - Extra meaning (i.e labels)
+      Aria live - Dynamic content & importance
+        aria-live="off"
+        - off - Don't announce changes
+        - polite - Announce changes when idle
+        - assertive - Announce changes as soon as possible
+
+      aria-label - Label not visible on UI
+      aira-labelledby - Another element as a label, passed by id
+      aria-description - More detail than labels
+      aria describedby - Another element as description, passed by id
+    -->
+    <!-- states - Current state (i.e disabled)
+      Get by default in proper input tags
+      eg - aria-checked="true"
+      
+      aria-checked - Checkbox state
+      aria-disabled - Element is disabled
+      aria-expanded - Expanded or collapsed element
+      aria-hidden - Not visible on the page
+      aria-pressed - Toggle currently "pressed"
+      aria-selected - Element is selected
+    -->
+    <ol role="tablist">
+      <li
+        id="tab1"
+        role="tab"
+        aria-controls="panel1"
+        aria-selected="true"
+      >
+        Tab 1
+      </li>
+      <li
+        id="tab2"
+        role="tab"
+        aria-controls="panel2"
+        aria-selected="false"
+      >
+        Tab 2
+      </li>
+      <li
+        id="tab3"
+        role="tab"
+        aria-controls="panel3"
+        aria-selected="false"
+      >
+        Tab 3
+      </li>
+    </ol>
+
+    <div
+      role="tabpanel"
+      id="panel1"
+      aria-labelledby="tab1"
+    >
+      <p>Panel 1</p>
+    </div>
+
+    <div
+      role="tabpanel"
+      id="panel2"
+      class="hidden"
+      aria-labelledby="tab2"
+    >
+      <p>Panel 2</p>
+    </div>
+
+    <div
+      role="tabpanel"
+      id="panel3"
+      class="hidden"
+      aria-labelledby="tab3"
+    >
+      <p>Panel 3</p>
+    </div>
+
+
+    <script>
+      const tabs = document.getElementsByTagName('li');
+      const panels = document.getElementsByTagName('div');
+
+      const css = 'li:nth-of-type({{0}}) { background-color: grey }';
+      const style = document.createElement('style');
+      style.innerText = css.replace('{{0}}', 1);
+      document.head.appendChild(style);
+
+      for (let i = 0; i < tabs.length; ++i) {
+        tabs[i].addEventListener('click', (event) => {
+          style.innerText = css.replace('{{0}}', i + 1);
+          document.head.appendChild(style);
+
+          for (let j = 0; j < tabs.length; ++j) {
+            panels[j].classList.add('hidden');
+            tabs[j].setAttribute('aria-selected', 'false');
+          }
+          panels[i].classList.remove('hidden');
+          tabs[i].setAttribute('aria-selected', 'true');
+        })
+      }
+    </script>
+  </body>
+</html>

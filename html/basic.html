@@ -1,0 +1,200 @@
+<!-- Tells browser to use most mordern html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Sets the character encoding to utf-8, best is first tag -->
+    <meta charset="utf-8" />
+    <!-- Allows for custom responsive CSS, rather than the default scaling behavior of small devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My Page</title>
+
+    <link rel="icon" href="/icon.png" />
+    <!-- Sets the base url for all routes, eg anchor tag -->
+    <base href="https://base.com" />
+
+    <!-- Sets the page author -->
+    <meta name="author" content="Wilson" />
+    <!-- Sets the page description, 150 char max -->
+    <meta name="description" content="Basic html website" />
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        min-height: 100%;
+      }
+      header,
+      footer {
+        width: 100%;
+        background-color: grey;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto 1fr auto;
+        height: 100%;
+      }
+
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      ol {
+        display: flex;
+        list-style-type: none;
+      }
+
+      li {
+        margin: 0 1rem;
+      }
+
+      .profile {
+        margin-left: 1rem;
+        background-color: grey;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- article - self contained independently distributable -->
+    <!-- section - Thematic grouping of content, not self contained -->
+    <!-- header - Introductory content, not nav bar -->
+    <!-- main - Main content, one per page -->
+    <!-- nav - Navbar, section of links -->
+    <!-- aside - Indirectly related non-vital content -->
+    <!-- footer - Footer of the document, usually copyright info -->
+    <header>
+      <a href="/main">Logo</a>
+      <nav>
+        <ol>
+          <li>Link 1</li>
+          <li>Link 2</li>
+          <li>Link 3</li>
+        </ol>
+      </nav>
+    </header>
+
+    <main>
+      <article>
+        <h1>This is the title</h1>
+        <aside>
+          <div class="profile">
+            <h2>Profile</h2>
+            <p>I am Wilson</p>
+          </div>
+        </aside>
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+          <br />
+          <br />
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+          <br />
+          <br />
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </p>
+        <hr />
+        <pre>
+Hi,
+this is <em>pre formatted</em>
+
+<strong>Strong!</strong>
+        </pre>
+      </article>
+
+      <table>
+        <caption>Budget</caption>
+
+        <colgroup>
+          <col span="2" style="background: red;" />
+        </colgroup>
+
+        <thead>
+          <tr>
+            <th colspan="2" scope="col">Category</th>
+            <th scope="col">Budget</th>
+            <th scope="col">Spending</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th colspan="2" scope="row">Food</th>
+            <td>$200</td>
+            <td>$100</td>
+          </tr>
+          <tr>
+            <th colspan="2" scope="row">Entertainment</th>
+            <td>$250</td>
+            <td>$300</td>
+          </tr>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <th colspan="2" scope="row">Total</th>
+            <td>$450</td>
+            <td>$400</td>
+          </tr>
+        </tfoot>
+      </table>
+      
+      <hr />
+
+      <!-- <form action="/myapi" method="POST"> -->
+      <form>
+        <label for="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          placeholder="user123"
+          name="username"
+          required
+        />
+
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          minlength="6"
+          required
+        />
+
+        <input type="date" />
+
+        <label for="checkbox">Check</label>
+        <input id="checkbox" type="checkbox" />
+
+        <fieldset>
+          <legend>Choose your animal</legend>
+
+          <label for="dog">Dog</label>
+          <input id="dog" type="radio" name="animal" value="dog"/>
+
+          <label for="cat">Cat</label>
+          <input id="cat" type="radio" name="animal" value="cat"/>
+
+          <label for="horse">Horse</label>
+          <input id="horse" type="radio" name="animal" value="horse"/>
+        </fieldset>
+        
+        <!-- <input type="submit" /> -->
+        <button>Submit</button>
+      </form>
+    </main>
+
+    <footer>
+      Copyright 2022. All right reserved
+    </footer>
+  </body>
+</html>
